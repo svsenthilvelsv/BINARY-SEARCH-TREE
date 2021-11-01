@@ -27,3 +27,23 @@ t->root = NULL;
 
 return t;
 }
+void insert(binary_search_tree *t, node *n) {
+node *y = NULL;
+node *temp = t->root;
+while(temp != NULL) {
+  y = temp;
+  if(n->data < temp->data)
+    temp = temp->left;
+  else
+    temp = temp->right;
+}
+n->parent = y;
+
+if(y == NULL) //newly added node is root
+  t->root = n;
+else if(n->data < y->data)
+  y->left = n;
+else
+  y->right = n;
+}
+
